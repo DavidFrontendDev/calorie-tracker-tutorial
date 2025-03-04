@@ -1,7 +1,7 @@
 import { Activity } from "../types";
 import { categories } from "../data/categories";
 import { useMemo } from "react";
-import { PencilSquareIcon } from "@heroicons/react/24/outline";
+import { PencilSquareIcon, XCircleIcon } from "@heroicons/react/24/outline";
 import { ActivityActions } from "../reducers/activityReducer";
 
 type ActivityListProps = {
@@ -17,7 +17,7 @@ function ActivityList({ activities, dispatch }: ActivityListProps) {
   );
   return (
     <>
-      <h2 className="text-4xl font-bold text-slate-600 text-center">
+      <h2 className="text-4xl font-bold text-white text-center">
         Comida y Actividades
       </h2>
       {activities.map((activity) => (
@@ -46,6 +46,16 @@ function ActivityList({ activities, dispatch }: ActivityListProps) {
               }
             >
               <PencilSquareIcon className="h-8 w-8 text-gray-800" />
+            </button>
+            <button
+              onClick={() =>
+                dispatch({
+                  type: "delete-activity",
+                  payload: { id: activity.id },
+                })
+              }
+            >
+              <XCircleIcon className="h-8 w-8 text-red-500" />
             </button>
           </div>
         </div>
